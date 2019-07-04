@@ -26,6 +26,15 @@ const userModel = new Schema({
   },
 });
 
+// Hooks goes here
+userModel.pre('save', function (next) {
+  if (!this.isModified('password')) {
+    return next();
+  }
+  this.password = '***Hashed Password***';
+  next();
+});
+
 // Indexing goes here
 userModel.index({ email: 1 });
 

@@ -13,23 +13,41 @@ const fileModel = require('../../models/file.model');
 ///////////////////////////////////////////////////////////////
 router.get('/', async(req, res, next) => {
   try {
-    res.send('Users');
-  } catch (error) {
-    
+    // TODO : Implement pagination
+    await userModel.find({})
+      .then(users => {
+        if (_.isEmpty(users))
+          return res.status(404).send({ status: 'error', message: 'No users found'});
+
+        res.json(users);
+      })
+      .catch(e => { throw e });
+  } catch (e) {
+    res.status(404).send({ status: 'error', message: e.message});
   }
 });
 
 ///////////////////////////////////////////////////////////////
-/// GET all users (TODO: pagination & user authorization)
+/// GET a user
 ///////////////////////////////////////////////////////////////
 router.get('/:userId', async(req, res, next) => {
   try {
-    res.send('Users by Id');
-  } catch (error) {
-    
+    await userModel.findById({_id: req.params.userId})
+      .then(users => {
+        if (_.isEmpty(users))
+          return res.status(404).send({ status: 'error', message: 'No user found'});
+
+        res.json(users);
+      })
+      .catch(e => { throw e });
+  } catch (e) {
+    res.status(404).send({ status: 'error', message: e.message});
   }
 });
 
+///////////////////////////////////////////////////////////////
+/// POST user info
+///////////////////////////////////////////////////////////////
 router.post('/signup', async(req, res, next) => {
   try {
     // Validate user request
@@ -53,8 +71,8 @@ router.post('/signup', async(req, res, next) => {
           .catch(e => { throw e });
       })
       .catch(e => { throw e });
-  } catch (error) {
-    res.status(400).send({ status: 'error', message: error.message });
+  } catch (e) {
+    res.status(400).send({ status: 'error', message: e.message });
   }
 });
 
