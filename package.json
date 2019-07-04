@@ -1,0 +1,44 @@
+{
+  "name": "dropbox_clone_backend",
+  "version": "1.0.0",
+  "description": "Simple dropbox folder hierarchy service - Nodejs & MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renishb10/dropbox_clone_backend.git"
+  },
+  "keywords": [
+    "node",
+    "nodejs",
+    "mongodb",
+    "mocha",
+    "chai",
+    "renishb"
+  ],
+  "author": "Renish Bhaskaran",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/renishb10/dropbox_clone_backend/issues"
+  },
+  "homepage": "https://github.com/renishb10/dropbox_clone_backend#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "helmet": "^3.18.0",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.6.3"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.0",
+    "mocha": "^6.1.4",
+    "supertest": "^4.0.2"
+  }
+}
