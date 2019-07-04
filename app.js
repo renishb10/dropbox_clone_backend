@@ -8,6 +8,7 @@ const cors = require('cors');
 const config = require('./configs');
 const routes = require('./routes');
 global.logger = require('./helpers/logger').createCustLogger();
+global.db = global.db ? global.db : require('./data/db')();
 
 const app = express();
 

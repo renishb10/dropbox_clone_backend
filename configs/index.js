@@ -18,7 +18,7 @@ const config = {
   logLevel: process.env.WINSTON_LOG_LEVEL,
   db: {
     url: process.env.DB_URL,
-    options: {},
+    options: { useNewUrlParser: true },
   },
   apiBasePath: '/api/v1',
 };
