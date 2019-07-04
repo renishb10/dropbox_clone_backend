@@ -60,6 +60,43 @@
         }
       }
     },
+    "/files/{parentId}/create": {
+      "post": {
+        "tags": ["files"],
+        "description": "Create a new user",
+        "parameters": [
+          {
+            "name": "parentId",
+            "description": "Current Folder Id, the user is in now.",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "x-user-id",
+            "description": "User Id (logged in user)",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "body",
+            "description": "File object",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/File"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "default": {
+            "description": "Error"
+          }
+        }
+      }
+    },
     "/files": {
       "get": {
         "tags": ["files"],
@@ -83,37 +120,6 @@
         }
       }
     },
-    "/files/{parentId}/create": {
-      "post": {
-        "tags": ["files"],
-        "description": "Create a new user",
-        "parameters": [
-          {
-            "name": "parentId",
-            "description": "Current Folder Id, the user is in now.",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "description": "File object",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/File"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "default": {
-            "description": "Error"
-          }
-        }
-      }
-    },
     "/files/{parentId}": {
       "put": {
         "tags": ["files"],
@@ -123,6 +129,12 @@
             "name": "parentId",
             "description": "Folder/File Id, need renaming",
             "in": "path",
+            "required": true
+          },
+          {
+            "name": "x-user-id",
+            "description": "User Id (logged in user)",
+            "in": "header",
             "required": true
           },
           {
@@ -152,6 +164,12 @@
             "name": "parentId",
             "description": "Folder/File Id, need renaming",
             "in": "path",
+            "required": true
+          },
+          {
+            "name": "x-user-id",
+            "description": "User Id (logged in user)",
+            "in": "header",
             "required": true
           }
         ],
@@ -196,7 +214,7 @@
           "format": "string"
         },
         "isFolder": {
-          "type": "string",
+          "type": "boolean",
           "format": "string"
         }
       }
