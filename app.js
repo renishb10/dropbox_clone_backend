@@ -40,7 +40,7 @@ app.use(`${config.apiBasePath}/files`, routes.files);
 app.use(`${config.apiBasePath}/users`, routes.users);
 
 // Listener
-app.listen(config.port, () => {
+app.listen(process.env.PORT || config.port, () => {
   logger.log('debug', `Listening on port ${config.port}...`);
 });
 
