@@ -48,6 +48,16 @@ const fileModel = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     default: null,
   },
+  createdAt: {
+    type: Date,
+    required: false,
+    default: new Date().toISOString(),
+  },
+  updatedAt: {
+    type: Date,
+    required: false,
+    default: new Date().toISOString(),
+  },
 });
 
 // Indexing goes here

@@ -44,6 +44,7 @@ const renameFile = async (fileId, newName) => {
         throw new Error('No such file exist');
 
       fl.name = newName;
+      fl.updatedAt = new Date().toISOString();
       fl.save()
         .then(data => { return data; })
         .catch(e => { throw e; });

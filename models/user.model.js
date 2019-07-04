@@ -24,6 +24,16 @@ const userModel = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     required: false, // TODO: Instead we can go for Hooks and create Root folder
   },
+  createdAt: {
+    type: Date,
+    required: false,
+    default: new Date().toISOString(),
+  },
+  updatedAt: {
+    type: Date,
+    required: false,
+    default: new Date().toISOString(),
+  },
 });
 
 // Hooks goes here

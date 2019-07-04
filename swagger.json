@@ -1,0 +1,214 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Dropbox Clone",
+    "description": "Simple dropbox folder hierarchy service - Nodejs & MongoDB"
+  },
+  "host": "localhost:8080",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "users",
+      "description": "Handles new users creation and listing"
+    },
+    {
+      "name": "files",
+      "description": "Handles file/folder create, delete, rename (Note: folder is also a file type)"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/users/signup": {
+      "post": {
+        "tags": ["users"],
+        "description": "Create a new user",
+        "parameters": [
+          {
+            "name": "body",
+            "description": "User object",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "default": {
+            "description": "Error"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": ["users"],
+        "description": "Get list of users",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "default": {
+            "description": "Error"
+          }
+        }
+      }
+    },
+    "/files": {
+      "get": {
+        "tags": ["files"],
+        "description": "Get the list of files for the given user",
+        "parameters": [
+          {
+            "name": "x-user-id",
+            "in": "header",
+            "description": "Authenticated user Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "default": {
+            "description": "Error"
+          }
+        }
+      }
+    },
+    "/files/{parentId}/create": {
+      "post": {
+        "tags": ["files"],
+        "description": "Create a new user",
+        "parameters": [
+          {
+            "name": "parentId",
+            "description": "Current Folder Id, the user is in now.",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "description": "File object",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/File"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "default": {
+            "description": "Error"
+          }
+        }
+      }
+    },
+    "/files/{parentId}": {
+      "put": {
+        "tags": ["files"],
+        "description": "Renames a file or folder",
+        "parameters": [
+          {
+            "name": "parentId",
+            "description": "Folder/File Id, need renaming",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "description": "File Rename object",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FileRename"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "default": {
+            "description": "Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["files"],
+        "description": "Deletes a file or folder",
+        "parameters": [
+          {
+            "name": "parentId",
+            "description": "Folder/File Id, need renaming",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "default": {
+            "description": "Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "format": "string"
+        },
+        "lastName": {
+          "type": "string",
+          "format": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "string"
+        },
+        "password": {
+          "type": "string",
+          "format": "string"
+        }
+      }
+    },
+    "File": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "format": "string"
+        },
+        "isFolder": {
+          "type": "string",
+          "format": "string"
+        }
+      }
+    },
+    "FileRename": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "format": "string"
+        }
+      }
+    }
+  }
+}

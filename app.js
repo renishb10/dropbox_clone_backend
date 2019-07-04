@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const helmet = require('helmet');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 // Custom dependency.
 const config = require('./configs');
@@ -25,6 +27,13 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+// Swagger Documentation
+app.use(
+  '/api-doc',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument, { explorer: true }),
+);
+
 // Routing middlewares
 app.use('/', routes.index);
 app.use(`${config.apiBasePath}/files`, routes.files);
@@ -34,3 +43,9 @@ app.use(`${config.apiBasePath}/users`, routes.users);
 app.listen(config.port, () => {
   logger.log('debug', `Listening on port ${config.port}...`);
 });
+
+// Exporting it for unit test
+module.exports = app;
+
+// TODO: Add module 'express-load' to chain-up & load middlewares, routes, services etc later
+// TODO: Add third party log store via winston & exceptions (eg: Rollbar, Sentry.io or Azure AppInsights)

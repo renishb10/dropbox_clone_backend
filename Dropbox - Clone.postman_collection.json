@@ -1,0 +1,293 @@
+{
+	"info": {
+		"_postman_id": "192e78f6-60e9-42dc-8a57-734531d7d606",
+		"name": "Dropbox - Clone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Home",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-user-id",
+						"value": "5d1ddbd8e928974fb089e221",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"filetest\",\n\t\"isFolder\": false\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-user-id",
+						"value": "5d1ddbd8e928974fb089e221",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"filetest\",\n\t\"isFolder\": false\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST User Signup",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"Wissam\",\n\t\"lastName\": \"Tabbara\",\n\t\"email\": \"wissam.tabbara@gmail.com\",\n\t\"password\": \"password123\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/users/signup",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Files & Folders",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-user-id",
+						"value": "5d1ddbd8e928974fb089e221",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"filetest\",\n\t\"isFolder\": false\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/files",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE a File or Folder",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-user-id",
+						"value": "5d1ddbd8e928974fb089e221",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"filetest2\",\n\t\"isFolder\": false\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/files/5d1ddbdae928974fb089e222/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"files",
+						"5d1ddbdae928974fb089e222",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Rename File or Folder",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-user-id",
+						"value": "5d1ddbd8e928974fb089e221",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"renamedTestFile\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/files/5d1e3b63dc85bc3ed8a9e433",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"files",
+						"5d1e3b63dc85bc3ed8a9e433"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a File or Folder",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-user-id",
+						"value": "5d1ddbd8e928974fb089e221",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"renamedTestFile\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/files/5d1e3b63dc85bc3ed8a9e433",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"files",
+						"5d1e3b63dc85bc3ed8a9e433"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Swagger Documentation",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api-doc/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api-doc",
+						""
+					]
+				},
+				"description": "Open in Browser - Please"
+			},
+			"response": []
+		}
+	]
+}
