@@ -5,7 +5,7 @@
     "title": "Dropbox Clone",
     "description": "Simple dropbox folder hierarchy service - Nodejs & MongoDB"
   },
-  "host": "localhost:8080",
+  "host": "dropbox-clone-renish.herokuapp.com",
   "basePath": "/api/v1",
   "tags": [
     {
@@ -17,7 +17,7 @@
       "description": "Handles file/folder create, delete, rename (Note: folder is also a file type)"
     }
   ],
-  "schemes": ["http"],
+  "schemes": ["https"],
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
@@ -121,6 +121,33 @@
       }
     },
     "/files/{parentId}": {
+      "get": {
+        "tags": ["files"],
+        "description": "Get the list of files for the given user and folder (parentId)",
+        "parameters": [
+          {
+            "name": "x-user-id",
+            "in": "header",
+            "description": "Authenticated user Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "parentId",
+            "description": "Files under the given id will be fetched",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "default": {
+            "description": "Error"
+          }
+        }
+      },
       "put": {
         "tags": ["files"],
         "description": "Renames a file or folder",
@@ -162,7 +189,7 @@
         "parameters": [
           {
             "name": "parentId",
-            "description": "Folder/File Id, need renaming",
+            "description": "Folder/File Id, need to be deleted",
             "in": "path",
             "required": true
           },

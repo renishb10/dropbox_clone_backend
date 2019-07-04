@@ -7,7 +7,7 @@ const validator = require('./validator');
 const fileController = require('./controller');
 
 ///////////////////////////////////////////////////////////////
-/// GET all folders & files for the given user
+/// GET all folders & files (root) for the given user
 /// (TODO: pagination & admin authorization)
 ///////////////////////////////////////////////////////////////
 router.get('/', async(req, res, next) => {
@@ -18,6 +18,26 @@ router.get('/', async(req, res, next) => {
     // TODO: Look for fetching in one query (users..[files])
     const boxId = user.boxId;
     const files = await fileController.getFiles(boxId);
+    res.json(files);
+
+  } catch (e) {
+    res.status(404).send({ status: 'error', message: e.message});
+  }
+});
+
+///////////////////////////////////////////////////////////////
+/// GET specific folders & files for the given user & parent folder
+/// (TODO: pagination & admin authorization)
+///////////////////////////////////////////////////////////////
+router.get('/:parentId', async(req, res, next) => {
+  try {
+    const user = await validator.validateUser(req, res); // We can use Joi or Express-Validator middlewares
+
+
+    // Get given parentId
+    // TODO: Look for fetching in one query (users..[files])
+    const parentFolderId = req.params.parentId;
+    const files = await fileController.getFiles(parentFolderId);
     res.json(files);
 
   } catch (e) {
@@ -84,7 +104,7 @@ router.delete('/:parentId', async(req, res, next) => {
 
     await fileController.removeFile(req.params.parentId);
 
-    res.json({ status: 'success', message: `Deleted file/folder ${parentId}`});
+    res.json({ status: 'success', message: `Deleted file/folder ${req.params.parentId}`});
 
   } catch (e) {
     res.status(404).send({ status: 'error', message: e.message});
