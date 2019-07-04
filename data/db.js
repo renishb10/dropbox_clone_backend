@@ -14,7 +14,6 @@ module.exports = () => {
   mongoose.Promise = global.Promise;
 
   try {
-    console.log('DBURL:', dbConfig.url);
     mongo = mongoose.connect(dbConfig.url, dbConfig.options)
       .then(() => logger.log('info', 'Database: Connection established successfully'), err => console.log(err, options));
 
@@ -29,7 +28,7 @@ module.exports = () => {
       throw err;
     });
   } catch (e) {
-    console.log('Couldn\'t connect to the Database:', e);
+    // console.log('Couldn\'t connect to the Database:', e);
   }
 
   return mongoose;

@@ -36,6 +36,9 @@ build/Release
 node_modules/
 jspm_packages/
 
+# Temp file upload directory
+temp_must_secured/
+
 # TypeScript v1 declaration files
 typings/
 

@@ -17,13 +17,21 @@ const fileModel = new Schema({
   },
   isBox: {
     type: Boolean,
-    required: false,
+    default: false,
   },
   meta: {
     type: Object,
     required: false,
     default: null,
-    fileType: {
+    originalName: {
+      type: String,
+      required: true,
+    },
+    encoding: {
+      type: String,
+      required: true,
+    },
+    mimeType: {
       type: String,
       required: true,
     },
